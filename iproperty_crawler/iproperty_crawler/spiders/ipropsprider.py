@@ -35,7 +35,7 @@ class IpropSpider2(scrapy.spiders.Spider):
 		links = response.xpath("//ul[contains(@class,'listing')]/li[contains(@class,'sale-')]//a/@href").extract()
 		links = [i for i in set(links) if '/property/'in i]
 		for i in links:
-			url = 'https://www.iproperty.com.my/{}'.format(i)
+			url = 'https://www.iproperty.com.my{}'.format(i)
 			yield scrapy.Request(url,callback=self.extract_info)
 
 	def extract_info(self, response):
