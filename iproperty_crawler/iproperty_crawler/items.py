@@ -16,3 +16,7 @@ class IpropertyCrawlerItem(scrapy.Item):
     asking_price = scrapy.Field()
     address = scrapy.Field()
     area = scrapy.Field()
+    property_type = scrapy.Field()
+    tenure  = scrapy.Field()
+    posted_date = scrapy.Field()
+    land_title_type = scrapy.Field()

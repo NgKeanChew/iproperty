@@ -40,11 +40,17 @@ class IpropSpider2(scrapy.spiders.Spider):
 
 	def extract_info(self, response):
 		item = IpropertyCrawlerItem()
+		
 		item["website_url"] = response.url
 		item["property_name"] = response.xpath("//h2[contains(@class,'description')]/text()").extract()
 		item["asking_price"] = response.xpath("//div[contains(@class,'property-price')]/text()").extract_first()
 		item["address"] = response.xpath("//strong[contains(@class,'property-address')]/text()").extract_first()
 		item["area"] = response.xpath("///div[contains(@class,'property-areas-info')]/ul/li/text()").extract()
+		
+		item["property_type"] = response.xpath("//div[contains(@class,'propertyType')]//text()").extract()
+		item["tenure"] = response.xpath("//div[contains(@class,'tenure')]//text()").extract()
+		item["posted_date"] = response.xpath("//div[contains(@class,'updatedAt')]//text()").extract()
+		item["land_title_type"] = response.xpath("//div[contains(@class,'landTitleType')]//text()").extract()
 		return item
 
 
